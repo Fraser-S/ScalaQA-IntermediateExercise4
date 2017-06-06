@@ -1,0 +1,9 @@
+*.log
+*.idea
+# sbt specific
+dist/*
+taret/
+project/
+lib_managed/
+src_managed/
+project/boot/
