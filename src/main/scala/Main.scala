@@ -3,10 +3,14 @@
   */
 object Main {
   def main(args : Array[String]) : Unit ={
-    var customer : Person = new Person("John", "customer")
-    var car : Vehicle = new Car("Toyota", 5, customer, "Petrol", 5, 1873)
+    val customer : Person = new Customer("John")
+    val nonWorkingEmployee : Person = new Employee("Bill", null)
+    var car : Vehicle = new Car("Toyota", 5, customer, "Petrol", 1873, 5)
+    val workingEmployee: Person = new Employee("Angus", car)
 
+    println(nonWorkingEmployee.toString)
     println(car.toString)
+    println(workingEmployee.toString)
 
     //delete car
     car = null
