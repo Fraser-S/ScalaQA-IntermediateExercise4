@@ -48,8 +48,6 @@ class Garage {
     if(vehicleList.size > 0) Iter(0, model) else println("Cannot remove vehicle, no vehicles in the garage")
   }
 
-
-
   //opens the garage
   def openGarage() = {
     open = true
@@ -100,6 +98,7 @@ class Garage {
     "Open: " + open + ", Employees: " + employeeList + ", Vehicles: " + vehicleList
   }
 
+  //the assignment will only run if there is a possibility of work being start, this will ensure that this function will only run when needed
   def assignEmployeesToCars(): Unit ={
     //loop through employees to see if any are free then loop through the cars to see if any cars are available
     if(vehicleList.size > 0 && employeeList.size > 0 && assigmentAvailable){

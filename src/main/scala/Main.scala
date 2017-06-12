@@ -29,11 +29,10 @@ object Main {
     //display details again
     garage.displayEmployees()
     garage.displayVehicles()
-    println(garage.toString)
 
     garage.assignEmployeesToCars()
 
+    garage.displayEmployees()
     garage.displayVehicles()
-    println(garage.toString)
   }
 }

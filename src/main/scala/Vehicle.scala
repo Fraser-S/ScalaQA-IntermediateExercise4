@@ -12,5 +12,5 @@ abstract class Vehicle(model : String,  tyres: Int, owner: Person, fuel: String,
   final def getID(): Int = { id }
   final def startRepair() =  {beingFixed = true}
   final def beingRepaired(): Boolean = {beingFixed}
-  override def toString: String = {"Model: " + model + ", Owner: " + owner.getName() + ", Fuel: " + fuel + ", NoOfTyres, " + tyres + ", ID: " + id}
+  override def toString: String = {"Model: " + model + ", Owner: " + owner.getName() + ", Fuel: " + fuel + ", NoOfTyres, " + tyres + ", ID: " + id + ", Being Repaired: " + beingFixed}
 }
