@@ -20,7 +20,7 @@ class Garage {
   //functions
 
   //only add the vehicle if it is open
-  def addvehicle(vehicle: Vehicle) = vehicle match {
+  def addVehicle(vehicle: Vehicle) = vehicle match {
     case a if vehicle != null && open == true && vehicle.getOwner()!=null => vehicleList += vehicle; assigmentAvailable = true
     case _ => println("Vehicle not added")
   }
