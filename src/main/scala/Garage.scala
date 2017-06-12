@@ -58,9 +58,9 @@ class Garage {
     open = false
   }
 
-  def calculateBill() = {
-    //cost should be the labour cost + part cost + vat
-    /*println("Labour Cost: " + labourCostPerHour*hoursWorked)
+  def calculateBill(vehicle: Vehicle) = {
+    /* cost should be the labour cost + part cost + vat
+    println("Labour Cost: " + labourCostPerHour*hoursWorked)
     println("Part Cost: " + partCost)
     var totalCost = (labourCostPerHour*hoursWorked) + partCosts
     println("Before Tax: " + totalCost)
@@ -68,17 +68,19 @@ class Garage {
     println("Tax: " + taxValue)
     totalCost +=taxValue
     println("After Tax: " + totalCost")
-    totalCost
-    */
+    totalCost*/
   }
 
   def fixVehicles() = {
-
+    for(i<-0 to employeeList.size-1){
+      //get the next part of the vehicle that needs repairing
+      employeeList(i).
+    }
   }
 
   def displayVehicles(): Unit = {
     def displayIter(i : Int) : Unit = i match{
-      case a if i != vehicleList.size => println("  " + (i+1) + ") " + vehicleList(i).toString); displayIter(i+1)
+      case a if i != vehicleList.size => println("  " + (i+1) + ") " + vehicleList(i).toString); vehicleList(i).displayParts(); displayIter(i+1)
       case _ => //do nothing
     }
     println("Current vehicles: ")
@@ -115,7 +117,7 @@ class Garage {
         }while(assigmentAvailable == true && employeeList(i).isFree())
         j=0//reset size
         i+=1
-      }while(assigmentAvailable == true && employeeList(i).isFree())
+      }while(assigmentAvailable == true)
     } else {
       assigmentAvailable = false
     }

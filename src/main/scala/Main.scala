@@ -78,8 +78,11 @@ object Main {
     garage.openGarage()
     //add cars to the garage
     addVehicles(garage)
+
+    //assign workers
+    garage.assignEmployeesToCars()
+
     //display the vehicles
     garage.displayVehicles()
-
   }
 }
