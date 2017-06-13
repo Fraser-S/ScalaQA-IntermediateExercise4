@@ -16,7 +16,7 @@ class Part(partName: String, partCost: Double, partBroken: Boolean, repairTime: 
   def timeSpentFixing(hoursSpent: Int): Unit = {
     timeSpentFixing+=hoursSpent
     timeSpentFixing match{
-      case a if timeSpentFixing >= timeToFix => broken = false//part fixed
+      case a if timeSpentFixing >= timeToFix => broken = false;//part fixed
       case _ => //do nothing
     }
   }
