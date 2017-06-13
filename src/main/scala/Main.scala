@@ -44,7 +44,7 @@ object Main {
 
   def generateVehicle(i : Int, rnd : Random): Vehicle = {
     //start by generating parts
-    var parts : ListBuffer[Part] = partGenerationIter10Times(0, new ListBuffer[Part], rnd)
+    val parts : ListBuffer[Part] = partGenerationIter10Times(0, new ListBuffer[Part], rnd)
     var car : Vehicle = null
     i match {
       case 0 => car =  new Car("Mercedes", 5, customerList(i), "Diesel", i, 3, parts)
