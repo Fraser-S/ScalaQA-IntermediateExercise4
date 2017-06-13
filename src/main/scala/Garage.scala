@@ -6,17 +6,18 @@ import scala.collection.mutable.ListBuffer
   * Created by Fraser on 12/06/2017.
   */
 
-class Garage {
+class Garage(labourChargePerHour: Double, vat: Double, workHours: Int) {
   //variables
   private var vehicleList: ListBuffer[Vehicle] = ListBuffer()
   private var employeeList: ListBuffer[Person] = ListBuffer()
   private var open: Boolean = false
-  private val labourCostPerHour: Double = 10
-  private val VAT: Double = 1.20
-  private val hoursPerDay = 10
+  private val labourCostPerHour: Double = labourChargePerHour
+  private val VAT: Double = vat
+  private val hoursPerDay = workHours
   private var assignmentAvailable = false
   private var dayIncome: Double = 0
-  private var dayLog:String = ""
+  private var totalIncome: Double = 0
+  private var dayLog: String = ""
 
   //functions
   //only add the vehicle if it is open
@@ -33,7 +34,7 @@ class Garage {
   def removeVehicle(carID : Int):Unit = {
     def Iter(i : Int, carID : Int) : Unit = i match{
       case a if i == vehicleList.size => println("Car with ID of '" + carID + "' cannot be found")
-      case b if vehicleList(i).getID() == carID => vehicleList(i) = null ; vehicleList.remove(i);println("Car Removed")
+      case b if vehicleList(i).getID() == carID => vehicleList(i) = null ; vehicleList.remove(i)
       case _ => Iter(i+1, carID)
     }
     if(vehicleList.nonEmpty) Iter(0, carID) else println("Cannot remove vehicle, no vehicles in the garage")
@@ -42,7 +43,7 @@ class Garage {
   def removeVehicle(model: String):Unit = {
     def Iter(i : Int, model : String) : Unit = i match{
       case a if i == vehicleList.size => println("No Cars from '" + model + "' are currently in the garage")
-      case b if vehicleList(i).getModel() == model => vehicleList(i) = null ; vehicleList.remove(i);println("Car Removed")
+      case b if vehicleList(i).getModel() == model => vehicleList(i) = null ; vehicleList.remove(i)
       case _ => Iter(i+1, model)
     }
     if(vehicleList.nonEmpty) Iter(0, model) else println("Cannot remove vehicle, no vehicles in the garage")
@@ -58,8 +59,9 @@ class Garage {
   //closes the garage
   def closeGarage():Unit = {
     open = false
+    totalIncome+=dayIncome
     println(dayLog)
-    println("Days Profit: " + dayIncome)
+    println("Days Profit: " + dayIncome + ", Total Profit: " + totalIncome)
   }
 
   def isOpen():Boolean = {open}
@@ -71,7 +73,7 @@ class Garage {
     totalCost = (totalCost*VAT)
     dayIncome += totalCost
     //add the car to the log
-    dayLog+=("CarRepaired: " + vehicle.getModel() + " on day:" + day + " hour:" + hour + " by " + vehicle.getWorker().getName() +" Time Spent Fixing: " + vehicle.getHoursWorked() + ". Total Cost: " + totalCost + "\n\n")
+    dayLog+=("CarRepaired: " + vehicle.getModel() + " on day:" + day + " hour:" + hour + " by " + vehicle.getWorker().getName() +" Time Spent Fixing: " + vehicle.getHoursWorked() + ". Total Cost: " + totalCost + "\n")
   }
 
   private def makeRepair(vehicle: Vehicle): Unit ={

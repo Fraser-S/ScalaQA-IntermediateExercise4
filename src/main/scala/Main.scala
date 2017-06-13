@@ -71,7 +71,7 @@ object Main {
 
   def main(args : Array[String]) : Unit ={
     //create the garage
-    val garage : Garage = new Garage()
+    val garage : Garage = new Garage(5, 1.20, 10)
     hireEmployees(garage)
     garage.displayEmployees()
     //open the garage
@@ -80,7 +80,7 @@ object Main {
     addVehicles(garage)
     //assign workers
     garage.assignEmployeesToCars()
-    //
+    //fix the vehicles in the garage
     garage.fixVehicles()
   }
 }
