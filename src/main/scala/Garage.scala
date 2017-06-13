@@ -15,7 +15,7 @@ class Garage {
   private var open: Boolean = false
   private var labourCostPerHour: Double = 10
   private var VAT: Double = 1.20
-  private var hoursPerDay = 10
+  private var hoursPerDay = 10F
   private var assigmentAvailable = false
   //functions
 
@@ -79,16 +79,16 @@ class Garage {
       var vehicle = vehicleList.indexOf(employeeList(i).getCar())
       println(vehicle)
     }
+  }
 
-    def displayVehicles(): Unit = {
-      def displayIter(i: Int): Unit = i match {
-        case a if i != vehicleList.size => println("  " + (i + 1) + ") " + vehicleList(i).toString); vehicleList(i).displayParts(); displayIter(i + 1)
-        case _ => //do nothing
-      }
-
-      println("Current vehicles: ")
-      if (vehicleList.nonEmpty) displayIter(0) else println("  No vehicles")
+  def displayVehicles(): Unit = {
+    def displayIter(i: Int): Unit = i match {
+      case a if i != vehicleList.size => println("  " + (i + 1) + ") " + vehicleList(i).toString); vehicleList(i).displayParts(); displayIter(i + 1)
+      case _ => //do nothing
     }
+
+    println("Current vehicles: ")
+    if (vehicleList.nonEmpty) displayIter(0) else println("  No vehicles")
   }
 
   def displayEmployees(): Unit = {

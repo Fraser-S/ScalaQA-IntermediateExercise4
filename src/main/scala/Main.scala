@@ -84,5 +84,7 @@ object Main {
 
     //display the vehicles
     garage.displayVehicles()
+
+    garage.fixVehicles()
   }
 }
