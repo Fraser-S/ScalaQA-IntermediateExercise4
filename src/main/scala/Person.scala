@@ -6,4 +6,5 @@ abstract class Person(name: String, role : String) {
   override def toString: String = {"Name: " + name + ", Role: " + role}
   def isFree():Boolean
   def setCar(car:Vehicle)
+  def getCar():Vehicle = { null }
 }

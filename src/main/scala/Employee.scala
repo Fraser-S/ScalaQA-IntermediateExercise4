@@ -11,5 +11,8 @@ class Employee(name: String, car: Vehicle) extends Person(name, "Employee") {
   }
 
   override def setCar(car: Vehicle): Unit = { workingOn = car }
+
+  override def getCar(): Vehicle = {workingOn}
+
   override def toString: String = {var customerInfo = super.toString; if(isFree()) customerInfo += ", WorkingOn: Nothing"else customerInfo+=", workingOn: (" + workingOn.getModel() + ", " + workingOn.getID() + ")" ;customerInfo}
 }
