@@ -3,9 +3,7 @@ import sun.text.UCompactIntArray
 import scala.collection.mutable.ListBuffer
 
 /**
-  * Created by Administrator on 12/06/2017.
-  *
-  * Design a Garage class, this class will have all the functionality that a garage should offer.
+  * Created by Fraser on 12/06/2017.
   */
 
 class Garage {
@@ -13,22 +11,22 @@ class Garage {
   private var vehicleList: ListBuffer[Vehicle] = ListBuffer()
   private var employeeList: ListBuffer[Person] = ListBuffer()
   private var open: Boolean = false
-  private var labourCostPerHour: Double = 10
-  private var VAT: Double = 1.20
-  private var hoursPerDay = 10
-  private var assigmentAvailable = false
+  private val labourCostPerHour: Double = 10
+  private val VAT: Double = 1.20
+  private val hoursPerDay = 10
+  private var assignmentAvailable = false
   private var dayIncome: Double = 0
   private var dayLog:String = ""
 
   //functions
   //only add the vehicle if it is open
   def addVehicle(vehicle: Vehicle):Unit = vehicle match {
-    case a if vehicle != null && open && vehicle.getOwner()!=null => vehicleList += vehicle; assigmentAvailable = true
+    case a if vehicle != null && open && vehicle.getOwner()!=null => vehicleList += vehicle; assignmentAvailable = true
     case _ => println("Vehicle not added")
   }
 
   def registerEmployee(employee: Employee):Unit = employee match {
-    case a if employee != null => employeeList += employee; assigmentAvailable = true
+    case a if employee != null => employeeList += employee; assignmentAvailable = true
     case _ => println("Employee not added")
   }
 
@@ -88,7 +86,7 @@ class Garage {
   private def checkVehicleRepair(vehicle : Vehicle, employee: Person, day: Int, hour: Int):Unit = {
     //check to see if the car is fully repaired
     if (vehicle.repaired()) {
-      assigmentAvailable = true
+      assignmentAvailable = true
       calculateBill(vehicle, day, hour) //this will also add to the log
       removeVehicle(vehicle.getID())
       employee.setCar(null)
@@ -146,23 +144,23 @@ class Garage {
   //the assignment will only run if there is a possibility of work being start, this will ensure that this function will only run when needed
   def assignEmployeesToCars(): Unit ={
     //loop through employees to see if any are free then loop through the cars to see if any cars are available
-    if(vehicleList.nonEmpty && employeeList.nonEmpty && assigmentAvailable){
+    if(vehicleList.nonEmpty && employeeList.nonEmpty && assignmentAvailable){
       //loop through the employee list
       var i,j :Int = 0
       do{
         do{
           j match{
-            case a if j == vehicleList.size || employeeList.size == i => assigmentAvailable = false
+            case a if j == vehicleList.size || employeeList.size == i => assignmentAvailable = false
             case b if !vehicleList(j).beingRepaired() => vehicleList(j).startRepair();vehicleList(j).setWorker(employeeList(i)); employeeList(i).setCar(vehicleList(j))
             case _ => //do nothing
           }
           j+=1
-        }while(assigmentAvailable && employeeList(i).isFree())
+        }while(assignmentAvailable && employeeList(i).isFree())
         j=0//reset size
         i+=1
-      }while(assigmentAvailable)
+      }while(assignmentAvailable)
     } else {
-      assigmentAvailable = false
+      assignmentAvailable = false
     }
   }
 }
