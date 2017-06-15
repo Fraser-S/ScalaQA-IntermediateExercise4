@@ -40,7 +40,8 @@ abstract class Vehicle(model : String,  tyres: Int, owner: Person, fuel: String,
   final def getPartsCost():Double = {
     def Iter(index : Int, cost: Double): Double = index match {
       case a if index == parts.size => cost //if it got here all parts cost added
-      case _ => Iter(index+1, cost+parts(index).getCost())
+      case a if parts(index).wasBroken => Iter(index+1, cost+parts(index).getCost())
+      case _ => Iter(index+1, cost)
     }
     Iter(0, 0)
   }
