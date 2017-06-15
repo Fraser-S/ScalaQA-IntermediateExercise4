@@ -55,5 +55,15 @@ abstract class Vehicle(model : String,  tyres: Int, owner: Person, fuel: String,
     Iter(0, 0)
   }
 
+  final def getListOfPartsFixed(): String = {
+    def Iter(index:Int, partList: String): String = index match {
+      case a if index == parts.size => partList //if it got here all parts cost added
+      case a if parts(index).wasBroken => Iter(index+1, partList + parts(index).name+ ": £" + parts(index).getCost()+ ", ")
+      case _ => Iter(index+1, partList)
+    }
+    var partList: String = "    fixed Parts: " + Iter(0, "") + "\n"
+    partList
+  }
+
   override def toString(): String = {"Model: " + model + ", Owner: " + owner.getName() + ", Fuel: " + fuel + ", NoOfTyres, " + tyres + ", ID: " + id + ", Being Repaired: " + beingFixed }
 }

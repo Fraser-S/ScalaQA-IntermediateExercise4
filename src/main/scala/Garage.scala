@@ -61,7 +61,7 @@ class Garage(labourChargePerHour: Double, vat: Double, workHours: Int) {
     open = false
     totalIncome+=dayIncome
     println(dayLog)
-    println("Days Profit: " + dayIncome + ", Total Profit: " + totalIncome)
+    println("Days Profit: £" + dayIncome + ", Total Profit: £" + totalIncome)
   }
 
   def isOpen():Boolean = {open}
@@ -73,7 +73,8 @@ class Garage(labourChargePerHour: Double, vat: Double, workHours: Int) {
     totalCost = (totalCost*VAT)
     dayIncome += totalCost
     //add the car to the log
-    dayLog+=("CarRepaired: " + vehicle.getModel() + " on day:" + day + " hour:" + hour + " by " + vehicle.getWorker().getName() +" Time Spent Fixing: " + vehicle.getHoursWorked() + ". Total Cost: " + totalCost + "\n")
+    dayLog+=("CarRepaired: " + vehicle.getModel() + " on day:" + day + " hour:" + hour + " by " + vehicle.getWorker().getName() +" Time Spent Fixing: " + vehicle.getHoursWorked() + ". Total Cost: £" + totalCost + "\n")
+    dayLog+=vehicle.getListOfPartsFixed()
   }
 
   private def makeRepair(vehicle: Vehicle): Unit ={
