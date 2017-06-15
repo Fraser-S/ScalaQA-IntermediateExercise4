@@ -68,13 +68,15 @@ class Garage(labourChargePerHour: Double, vat: Double, workHours: Int) {
 
   def calculateBill(vehicle: Vehicle, day: Int, hour: Int): Unit = {
     //calculate Cost
-    var totalCost: Double = (labourCostPerHour*vehicle.getHoursWorked()) + vehicle.getPartsCost()
+    val labourCharge: Double = labourCostPerHour*vehicle.getHoursWorked()
+    var totalCost: Double = labourCharge + vehicle.getPartsCost()
     //add TAX
     totalCost = (totalCost*VAT)
+    var tax =  (totalCost*VAT) - totalCost
     dayIncome += totalCost
     //add the car to the log
     dayLog+=("CarRepaired: " + vehicle.getModel() + " on day:" + day + " hour:" + hour + " by " + vehicle.getWorker().getName() +" Time Spent Fixing: " + vehicle.getHoursWorked() + ". Total Cost: £" + totalCost + "\n")
-    dayLog+=vehicle.getListOfPartsFixed()
+    dayLog+=vehicle.getListOfPartsFixed() + " Labour Charge: " + labourCharge + ", VAT: " +  tax + "\n"
   }
 
   private def makeRepair(vehicle: Vehicle): Unit ={

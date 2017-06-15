@@ -61,7 +61,7 @@ abstract class Vehicle(model : String,  tyres: Int, owner: Person, fuel: String,
       case a if parts(index).wasBroken => Iter(index+1, partList + parts(index).name+ ": £" + parts(index).getCost()+ ", ")
       case _ => Iter(index+1, partList)
     }
-    var partList: String = "    fixed Parts: " + Iter(0, "") + "\n"
+    var partList: String = "    fixed Parts: " + Iter(0, "")
     partList
   }
 
